@@ -1,3 +1,7 @@
+# Author: A.Bacchus
+# Date : 02/20/2019
+# Description : This playbook is built to provisioned an OSX hardware to a state required for IOS development
+
 ---
 - hosts: localhost
   vars:
