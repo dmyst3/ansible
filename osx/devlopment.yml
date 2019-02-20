@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+  vars:
+
+  tasks:
+  
+  #Java Setup
+  - name: Check if java is already installed
+    stat:
+      path: /Library/Java/JavaVirtualMachines/
+    register: j
+
+  - name: Installing Java
+    command: "{{ item }}"
+    with_items:
+      - brew tap AdoptOpenJDK/openjdk
+      - brew install adoptopenjdk/openjdk/adoptopenjdk-openjdk8 
+    when: not j.stat.exists
+
+
+  #Fastlane Setup
+  - name: Check if Fastlane is already installed
+    stat:
+      path: /Library/Ruby/Gems/2.3.0/gems/fastlane-2.116.0/bin/fastlane
+    register: b
+  
+  - name: Install Fastlane if not already installed
+    command: gem install fastlane -NV
+    when: not b.stat.exists
+
