@@ -7,8 +7,26 @@
   vars:
 
   tasks:
-  
-  #Java Setup
+  #Install Pip
+  - name: Check if pip is already installed
+    stat:
+      path: /Library/Python/2.7/site-packages/pip-19.0.3-py2.7.egg
+    register: p
+
+  - name: Install Pip
+    command: easy_install pip
+    when: not p.stat.exists
+
+  #Install Python modules
+  - name: Install Python modules
+    command: pip install {{ item }}
+    with_items:
+      - consulate
+      - requests
+    become: yes
+
+
+  #Install Java
   - name: Check if java is already installed
     stat:
       path: /Library/Java/JavaVirtualMachines/
@@ -22,7 +40,7 @@
     when: not j.stat.exists
 
 
-  #Fastlane Setup
+  #Install Fastlane
   - name: Check if Fastlane is already installed
     stat:
       path: /Library/Ruby/Gems/2.3.0/gems/fastlane-2.116.0/bin/fastlane
