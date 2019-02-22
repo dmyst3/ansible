@@ -38,14 +38,14 @@
   #Install Java
   - name: Check if java is already installed
     stat:
-      path: /Library/Java/JavaVirtualMachines/
+      path: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk
     register: j
 
   - name: Installing Java
     command: "{{ item }}"
     with_items:
       - brew tap AdoptOpenJDK/openjdk
-      - brew install adoptopenjdk/openjdk/adoptopenjdk-openjdk8 
+      - brew cask reinstall adoptopenjdk8
     when: not j.stat.exists
 
   #Install xCode Tools if doesn't exist
