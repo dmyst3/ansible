@@ -7,7 +7,6 @@
   vars:
 
   tasks:
-  
   #Install Pip
   - name: Check if pip is already installed
     stat:
@@ -26,6 +25,15 @@
       - requests
     become: yes
 
+  #Install homebrew
+  - name: Check if Homebrew is already installed
+    stat:
+      path: /usr/local/bin/brew
+    register: h
+  
+  - name: Install Homebrew
+    command: ruby /Users/abacchus/Desktop/ansible/homebrew.rb
+    when: not h.stat.exists
 
   #Install Java
   - name: Check if java is already installed
@@ -40,6 +48,15 @@
       - brew install adoptopenjdk/openjdk/adoptopenjdk-openjdk8 
     when: not j.stat.exists
 
+  #Install xCode Tools if doesn't exist
+  - name: Check if Xcode is already installed
+    stat:
+      path: /Library/Developer/CommandLineTools
+    register: x
+  
+  - name: Install Xcode dev tools if xcode is installed
+    command: xcode-select --install
+    when: not x.stat.exists
 
   #Install Fastlane
   - name: Check if Fastlane is already installed
@@ -50,4 +67,3 @@
   - name: Install Fastlane if not already installed
     command: gem install fastlane -NV
     when: not b.stat.exists
-
