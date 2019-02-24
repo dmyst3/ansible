@@ -1,5 +1,5 @@
 # Author: A.Bacchus
-# Date : 02/20/2019
+# Date : 02/25/2019
 # Description : This playbook is built to provisioned an OSX hardware to a state required for IOS development
 
 ---
@@ -48,6 +48,19 @@
       - brew cask reinstall adoptopenjdk8
     when: not j.stat.exists
 
+
+  #Install wget
+  - name: Check if wget is already installed
+    stat:
+      path: /usr/local/bin/wget
+    register: w
+
+  - name: Installing wget
+    command: "{{ item }}"
+    with_items:
+      - brew install wget
+    when: not w.stat.exists
+
   #Install xCode Tools if doesn't exist
   - name: Check if Xcode is already installed
     stat:
@@ -61,7 +74,7 @@
   #Install Fastlane
   - name: Check if Fastlane is already installed
     stat:
-      path: /Library/Ruby/Gems/2.3.0/gems/fastlane-2.116.0/bin/fastlane
+      path: /usr/local/bin/fastlane
     register: b
   
   - name: Install Fastlane if not already installed
