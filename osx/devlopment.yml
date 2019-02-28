@@ -1,5 +1,5 @@
 # Author: A.Bacchus
-# Date : 02/25/2019
+# Date : 02/20/2019
 # Description : This playbook is built to provisioned an OSX hardware to a state required for IOS development
 
 ---
@@ -56,10 +56,20 @@
     register: w
 
   - name: Installing wget
-    command: "{{ item }}"
-    with_items:
-      - brew install wget
+    command: brew install wget
     when: not w.stat.exists
+
+
+    #Install bundle
+  - name: Check if bundle is already installed
+    stat:
+      path: /usr/local/bin/bundle
+    register: b
+
+  - name: Installing bundle
+    command: brew install bundle
+    when: not b.stat.exists
+
 
   #Install xCode Tools if doesn't exist
   - name: Check if Xcode is already installed
