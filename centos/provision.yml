@@ -1,0 +1,16 @@
+# Author: A.Bacchus
+# Date : 02/20/2019
+# Description : This playbook is built to provisioned an Centos hardware to a state required for jenkins and docker
+
+---
+- hosts: localhost
+  vars:
+
+  tasks:
+  #Install Java
+  - name: Installing Java
+    command: "{{ item }}"
+    with_items:
+      - yum install java-1.8.0-openjdk
+      - yum install java-1.8.0-openjdk-devel
+    become: true
