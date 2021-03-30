@@ -17,11 +17,9 @@
     ignore_errors: yes
     become: true
 
-  - name: Stop/Disbale firewaal
+  - name: setenforce
     command: "{{ item }}"
     with_items:
-      - systemctl stop firewalld
-      - systemctl disable firewalld
       - setenforce 0
     ignore_errors: yes
     become: true
