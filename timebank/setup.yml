@@ -14,9 +14,10 @@
       - systemctl stop firewalld
       - systemctl disable firewalld
       - setenforce 0
-    become: true
     ignore_errors: yes
-    
+    become: true
+
+
   - name: Ensure SELinux is set to permissive mode
     lineinfile:
       path: /etc/selinux/config
