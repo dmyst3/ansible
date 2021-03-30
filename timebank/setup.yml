@@ -16,7 +16,6 @@
     user:
       name: "{{ user }}"
       password: "{{ password }}"
-      groups: apache
     ignore_errors: yes
     become: true
 
