@@ -16,6 +16,7 @@
     user:
       name: "{{ user }}"
       password: "{{ password }}"
+      groups: sudo
     ignore_errors: yes
     become: true
 
