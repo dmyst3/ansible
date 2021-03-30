@@ -16,12 +16,12 @@
 
   - name: Print the generated password hash
     debug:
-      msg: "The password hash is  {{ mypass }}"
+      msg: "The password hash is  {{ mypass.stdout_lines }}"
 
   - name: create user
     user:
       name: "{{ user }}"
-      password: "{{ mypass }}"
+      password: "{{ mypass.stdout_lines }}"
     ignore_errors: yes
     become: true
 
