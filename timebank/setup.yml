@@ -1,0 +1,22 @@
+# Author: A.Bacchus
+# Date : 03/30/2021
+# Description : This playbook was created to setup the timebank software
+
+---
+- hosts: localhost
+  vars:
+
+  tasks:
+  #Stop firewall
+  - name: Stop/Disbale firewaal
+    command: "{{ item }}"
+    with_items:
+      - systemctl stop firewalld
+      - systemctl disable firewalld
+      - setenforce 0
+    become: true
+  - name: Ensure SELinux is set to permissive mode
+    lineinfile:
+      path: /etc/selinux/config
+      regexp: '^SELINUX='
+      line: SELINUX=permissive
