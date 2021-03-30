@@ -110,4 +110,3 @@
       - restart httpd
       - restart php56-php-fpm
     become: true
-    become_user: hourworld
