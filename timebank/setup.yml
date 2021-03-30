@@ -55,13 +55,13 @@
     file:
       path: "{{ item }}"
       state: directory
-      with_items:
-        - /home/hourworld/TNTv1
-        - /home/hourworld/TNTv1/www
-        - /home/hourworld/TNTv1/etc
-        - /home/hourworld/TNTv1/tmp
-        - /home/hourworld/TNTv1/log
-        - /home/hourworld/TNTv1/UPeml
+    with_items:
+      - /home/hourworld/TNTv1
+      - /home/hourworld/TNTv1/www
+      - /home/hourworld/TNTv1/etc
+      - /home/hourworld/TNTv1/tmp
+      - /home/hourworld/TNTv1/log
+      - /home/hourworld/TNTv1/UPeml
     become: yes
     become_user: hourworld
   
