@@ -9,10 +9,14 @@
     pass: hourworld
   tasks:
 
-  - name: generate has
+  - name: generate hash
     command: python3 -c 'import crypt; print (crypt.crypt("This is my Password", "{{ pass }}"))'
     become: true
     register: mypass
+
+  - name: Print the generated password
+    debug:
+    msg: "The password hash is  {{ mypass }}"
 
   - name: create user
     user:
