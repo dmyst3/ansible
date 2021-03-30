@@ -24,6 +24,13 @@
     ignore_errors: yes
     become: true
 
+  - name: Install repos
+    command: "dnf install {{ item }} -y"
+    with_items:
+      - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+      - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    become: true
+
   - name: Ensure SELinux is set to permissive mode
     lineinfile:
       path: /etc/selinux/config
@@ -41,8 +48,6 @@
   - name: Install php packages
     command: "dnf install {{ item }} -y"
     with_items:
-      - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-      - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
       - php56
       - php56-php-mbstring
       - php56-php-mysql
