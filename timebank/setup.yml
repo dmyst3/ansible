@@ -70,30 +70,35 @@
       path: /etc/httpd/conf/httpd.conf
       regexp: '^Listen 80'
       line: Listen 0.0.0.0:80
+    become: true
 
   - name: Set User
     lineinfile:
       path: /etc/httpd/conf/httpd.conf
       regexp: '^User apache'
       line: User hourworld
+    become: true
 
   - name: Set Docroot
     lineinfile:
       path: /etc/httpd/conf/httpd.conf
       regexp: '^DocumentRoot'
       line: DocumentRoot "/home/hourworld/TNTv1/www"
+    become: true
 
   - name: Set /var/www
     lineinfile:
       path: /etc/httpd/conf/httpd.conf
       regexp: '^<Directory "/var/www"'
       line: <Directory "/home/hourworld/TNTv1">
+    become: true
 
   - name: Set /var/www/html
     lineinfile:
       path: /etc/httpd/conf/httpd.conf
       regexp: '^<Directory "/var/www/html"'
       line: <Directory "/home/hourworld/TNTv1/www">
+    become: true
 
   
   - name: Creating a test html file 1
@@ -101,6 +106,7 @@
       dest: "/home/hourworld/TNTv1/www/index.html"
       content: |
         <h1> this is a test from the automation </h1>
+      become: true
 
   
   - name: Enable/Start fpm and apache
