@@ -16,7 +16,7 @@
 
   - name: Print the generated password hash
     debug:
-    msg: "The password hash is  {{ mypass }}"
+      msg: "The password hash is  {{ mypass }}"
 
   - name: create user
     user:
