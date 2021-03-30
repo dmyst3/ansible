@@ -4,7 +4,6 @@
 
 ---
 - hosts: localhost
-  
   vars:
     user: hourworld
     password: "hourworld"
@@ -36,18 +35,11 @@
       path: /etc/selinux/config
       regexp: '^SELINUX='
       line: SELINUX=permissive
-  
-  - name: Install and start apache
-    command: "{{ item }}"
-    with_items:
-      - dnf install httpd
-      - systemctl enable httpd
-      - systemctl start httpd
-    become: true
 
-  - name: Install php packages
+  - name: Install apache and php packages
     command: "dnf install {{ item }} -y"
     with_items:
+      - httpd
       - php56
       - php56-php-mbstring
       - php56-php-mysql
@@ -56,9 +48,11 @@
       - php56-php-fpm
     become: true
 
-  - name: Enable/Start fpm
-    command: "{{ item }}"
+  - name: Enable/Start fpm and apache
+    command: "systemctl {{ item }}"
     with_items:
-      - systemctl enable php56-php-fpm
-      - systemctl start php56-php-fpm
+      - enable httpd
+      - enable php56-php-fpm
+      - start httpd
+      - start php56-php-fpm
     become: true
