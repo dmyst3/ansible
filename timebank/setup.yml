@@ -51,6 +51,13 @@
       - php56-php-fpm
     become: true
 
+  - name: Create timebank directories1
+    file:
+      path: /home/hourworld/TNTv1
+      state: directory
+      become: yes
+      become_user: hourworld
+
   - name: Create timebank directories
     command: " {{ item }} "
     with_items:
