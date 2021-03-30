@@ -14,7 +14,7 @@
     become: true
     register: mypass
 
-  - name: Print the generated password
+  - name: Print the generated password hash
     debug:
     msg: "The password hash is  {{ mypass }}"
 
