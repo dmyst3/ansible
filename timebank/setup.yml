@@ -7,7 +7,6 @@
   vars:
 
   tasks:
-  #Stop firewall
   - name: Stop/Disbale firewaal
     command: "{{ item }}"
     with_items:
@@ -17,9 +16,36 @@
     ignore_errors: yes
     become: true
 
-
   - name: Ensure SELinux is set to permissive mode
     lineinfile:
       path: /etc/selinux/config
       regexp: '^SELINUX='
       line: SELINUX=permissive
+  
+  - name: Install and start apache
+    command: "{{ item }}"
+    with_items:
+      - dnf install httpd
+      - systemctl enable httpd
+      - systemctl start httpd
+    become: true
+
+  - name: Install php packages
+    command: "dnf install {{ item }}"
+    with_items:
+      - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+      - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+      - php56
+      - php56-php-mbstring
+      - php56-php-mysql
+      - php56-php-gd
+      - php56-php-apcu
+      - php56-php-fpm
+    become: true
+
+  - name: Enable/Start fpm
+    command: "{{ item }}"
+    with_items:
+      - systemctl enable php56-php-fpm
+      - systemctl start php56-php-fpm
+    become: true
