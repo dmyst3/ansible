@@ -38,6 +38,7 @@
       path: /etc/selinux/config
       regexp: '^SELINUX='
       line: SELINUX=permissive
+    become: true
 
   - name: Install apache and php packages
     command: "dnf install {{ item }} -y"
