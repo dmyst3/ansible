@@ -48,6 +48,15 @@
       - php56-php-fpm
     become: true
 
+  - name: Create timebank directories
+    command: " {{ item }} "
+    with_items:
+      - cd ~
+      - mkdir -p TNTv1 TNTv1/www TNTv1/etc TNTv1/tmp TNTv1/log TNTv1/UPeml
+    become: yes
+    become_user: hourworld
+
+  
   - name: Enable/Start fpm and apache
     command: "systemctl {{ item }}"
     with_items:
