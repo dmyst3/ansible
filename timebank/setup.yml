@@ -93,6 +93,14 @@
       path: /etc/httpd/conf/httpd.conf
       regexp: '^<Directory "/var/www/html"'
       line: <Directory "/home/hourworld/TNTv1/www">
+
+  
+  
+  - name: Creating a test html file
+    copy:
+      dest: "/home/hourworld/TNTv1/www/index.html"
+      content: |
+        this is test file
   
   - name: Enable/Start fpm and apache
     command: "systemctl {{ item }}"
