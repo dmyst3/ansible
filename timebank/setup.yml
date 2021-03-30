@@ -4,9 +4,17 @@
 
 ---
 - hosts: localhost
+  
   vars:
-
+    user: hourworld
+    password: "hourworld"
   tasks:
+  
+  - name: create user
+    user:
+      name: {{user}}
+      password: {{password}}
+
   - name: Stop/Disbale firewaal
     command: "{{ item }}"
     with_items:
