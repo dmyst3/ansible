@@ -16,7 +16,7 @@
     user:
       name: "{{ user }}"
       password: "{{ password }}"
-      groups: wheel
+      groups: ec2-user
     ignore_errors: yes
     become: true
 
