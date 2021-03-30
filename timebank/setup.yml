@@ -94,11 +94,11 @@
     become: true
 
   
-  - name: Creating a test html file 1
+  - name: Creating a phpinfo page
     copy:
-      dest: "/home/hourworld/TNTv1/www/index.html"
+      dest: "/home/hourworld/TNTv1/www/index.php"
       content: |
-        <h1> this is a test from the automation </h1>
+        <?php phpinfo(); ?>
     become: true
 
   
