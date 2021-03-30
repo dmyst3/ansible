@@ -53,7 +53,7 @@
 
   - name: Create timebank directories1
     file:
-      path: /home/hourworld/TNTv1
+      path: /home/hourworld/TNTv1/
       state: directory
       become: yes
       become_user: hourworld
