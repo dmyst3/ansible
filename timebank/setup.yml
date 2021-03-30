@@ -22,4 +22,4 @@
     lineinfile:
       path: /etc/selinux/config
       regexp: '^SELINUX='
-      line: SELINUX=permissiveAHMAD
+      line: SELINUX=permissive
