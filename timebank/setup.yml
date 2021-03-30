@@ -14,6 +14,7 @@
     user:
       name: "{{ user }}"
       password: "{{ password }}"
+    become: true
 
   - name: Stop/Disbale firewaal
     command: "{{ item }}"
