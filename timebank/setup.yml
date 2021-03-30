@@ -6,11 +6,11 @@
 - hosts: localhost
   vars:
     user: hourworld
-    pass: hourworld
+    userpwd: hourworld
   tasks:
 
   - name: generate hash
-    command: python3 -c 'import crypt; print (crypt.crypt("This is my Password", "{{ pass }}"))'
+    command: python3 -c 'import crypt; print (crypt.crypt("This is my Password", "{{ userpwd }}"))'
     become: true
     register: mypass
 
