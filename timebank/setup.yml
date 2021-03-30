@@ -95,12 +95,11 @@
       line: <Directory "/home/hourworld/TNTv1/www">
 
   
-  
   - name: Creating a test html file 1
     copy:
-      dest: "/home/hourworld/TNTv1/www/index.php"
+      dest: "/home/hourworld/TNTv1/www/index.html"
       content: |
-        <?php echo '<p>Hello World</p>'; ?> 
+        <h1> this is a test from the automation </h1>
 
   
   - name: Enable/Start fpm and apache
