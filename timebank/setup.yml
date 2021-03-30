@@ -98,9 +98,9 @@
   
   - name: Creating a test html file 1
     copy:
-      dest: "/home/hourworld/TNTv1/www/index.html"
+      dest: "/home/hourworld/TNTv1/www/index.php"
       content: |
-        this is test file 1
+        <?php echo '<p>Hello World</p>'; ?> 
 
   
   - name: Enable/Start fpm and apache
