@@ -62,8 +62,37 @@
       - /home/hourworld/TNTv1/tmp
       - /home/hourworld/TNTv1/log
       - /home/hourworld/TNTv1/UPeml
-    become: yes
-    become_user: hourworld
+    become: true
+
+  - name: Set Listner
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^Listen 80'
+      line: Listen 0.0.0.0:80
+
+  - name: Set User
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^User apache'
+      line: User hourworld
+
+  - name: Set Docroot
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^DocumentRoot'
+      line: DocumentRoot "/home/hourworld/TNTv1/www"
+
+  - name: Set /var/www
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^<Directory "/var/www"'
+      line: <Directory "/home/hourworld/TNTv1">
+
+  - name: Set /var/www/html
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^<Directory "/var/www/html"'
+      line: <Directory "/home/hourworld/TNTv1/www">
   
   - name: Enable/Start fpm and apache
     command: "systemctl {{ item }}"
