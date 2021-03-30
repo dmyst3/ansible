@@ -9,11 +9,11 @@
     user: hourworld
     password: "hourworld"
   tasks:
-  
+
   - name: create user
     user:
-      name: {{user}}
-      password: {{password}}
+      name: "{{ user }}"
+      password: "{{ password }}"
 
   - name: Stop/Disbale firewaal
     command: "{{ item }}"
