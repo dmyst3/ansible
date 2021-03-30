@@ -106,7 +106,7 @@
       dest: "/home/hourworld/TNTv1/www/index.html"
       content: |
         <h1> this is a test from the automation </h1>
-      become: true
+    become: true
 
   
   - name: Enable/Start fpm and apache
