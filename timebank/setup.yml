@@ -8,9 +8,11 @@
 
   tasks:
   #Stop firewall
-  - name: set enforce
+  - name: Stop/Disbale firewaal
     command: "{{ item }}"
     with_items:
+      - systemctl stop firewalld
+      - systemctl disable firewalld
       - setenforce 0
     ignore_errors: yes
     become: true
