@@ -16,7 +16,7 @@
     user:
       name: "{{ user }}"
       password: "{{ password }}"
-      groups: ec2-user
+      groups: apache
     ignore_errors: yes
     become: true
 
@@ -71,13 +71,6 @@
       path: /etc/httpd/conf/httpd.conf
       regexp: '^Listen 80'
       line: Listen 0.0.0.0:80
-    become: true
-
-  - name: Set User
-    lineinfile:
-      path: /etc/httpd/conf/httpd.conf
-      regexp: '^User apache'
-      line: User hourworld
     become: true
 
   - name: Set Docroot
