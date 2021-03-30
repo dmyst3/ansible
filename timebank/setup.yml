@@ -6,7 +6,10 @@
 - hosts: localhost
   vars:
     user: hourworld
-    password: "hourworld"
+    #Run this command to get the password
+    #Password is set as hourworld
+    #python3 -c 'import crypt,getpass;pw=getpass.getpass();print(crypt.crypt(pw) if (pw==getpass.getpass("Confirm: ")) else exit())'
+    password: "$6$C/.LtJfFVoQB6Mgr$voSn4BX7EZnzgE5ncGByyetJuCNEGfHhHaIboouDilTMzr6M2eKrdkrz4yJBTP2Y7atKVKwhRvL1H7I2GgA6W0"
   tasks:
 
   - name: create user
