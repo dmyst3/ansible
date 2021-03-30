@@ -6,16 +6,18 @@
 - hosts: localhost
   vars:
     user: hourworld
-    #Run this command to get the password
-    #Password is set as hourworld
-    #python3 -c 'import crypt,getpass;pw=getpass.getpass();print(crypt.crypt(pw) if (pw==getpass.getpass("Confirm: ")) else exit())'
-    password: "$6$aSTHGgyRACNc78U/$WVwoB3AHs1mdWZC1DevfckSbPI/zE.AYEc6seiJZYH3YAHSFJz8NBfxuX8XuPLSQqEAk.BCfLmH6RmlSpJWSw0"
+    pass: hourworld
   tasks:
+
+  - name: generate has
+    command: python3 -c 'import crypt; print (crypt.crypt("This is my Password", "{{ pass }}"))'
+    become: true
+    register: mypass
 
   - name: create user
     user:
       name: "{{ user }}"
-      password: "{{ password }}"
+      password: "{{ mypass }}"
     ignore_errors: yes
     become: true
 
