@@ -96,17 +96,18 @@
 
   
   
-  - name: Creating a test html file
+  - name: Creating a test html file 1
     copy:
       dest: "/home/hourworld/TNTv1/www/index.html"
       content: |
-        this is test file
+        this is test file 1
+
   
   - name: Enable/Start fpm and apache
     command: "systemctl {{ item }}"
     with_items:
       - enable httpd
       - enable php56-php-fpm
-      - start httpd
-      - start php56-php-fpm
+      - restart httpd
+      - restart php56-php-fpm
     become: true
