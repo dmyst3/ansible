@@ -114,7 +114,7 @@
     become: true
 
   - name: Set permission
-    command: "chmod 775 -R {{ apphome }}"
+    command: "chmod 155 -R {{ apphome }}"
     become: true
 
   - name: Set local Firewall Permissions for http
